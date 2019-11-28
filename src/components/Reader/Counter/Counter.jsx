@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { counter } from './Counter.module.css';
 
-export default function Counter({ publications, value }) {
+const Counter = ({ publications, value }) => {
   return (
     <>
       <p className={counter}>
@@ -10,9 +10,11 @@ export default function Counter({ publications, value }) {
       </p>
     </>
   );
-}
+};
 
 Counter.propTypes = {
   publications: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   value: PropTypes.number.isRequired,
 };
+
+export default Counter;

@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Controls.module.css';
 
-export default function Controls({
-  onIncrement,
-  onDecrement,
-  index,
-  publications,
-}) {
+const Controls = ({ onIncrement, onDecrement, index, publications }) => {
   return (
     <section className={styles.controls}>
       <button
@@ -28,7 +23,7 @@ export default function Controls({
       </button>
     </section>
   );
-}
+};
 
 Controls.propTypes = {
   publications: PropTypes.arrayOf(PropTypes.shape()).isRequired,
@@ -36,3 +31,5 @@ Controls.propTypes = {
   onIncrement: PropTypes.func.isRequired,
   onDecrement: PropTypes.func.isRequired,
 };
+
+export default Controls;

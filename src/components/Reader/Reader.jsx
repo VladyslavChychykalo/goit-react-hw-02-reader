@@ -4,43 +4,43 @@ import Controls from './Controls/Controls';
 import Counter from './Counter/Counter';
 import Publication from './Publication/Publication';
 
-export default class Reader extends Component {
+class Reader extends Component {
   static defaultProps = {
-    step: 1,
-    initialValue: 1,
+    startPageNumber: 1,
   };
 
   static propTypes = {
     publications: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    step: PropTypes.number,
-    initialValue: PropTypes.number,
+    startPageNumber: PropTypes.number,
   };
 
   state = {
     index: 0,
-    initialValue: this.props.initialValue,
+    currentPageNummber: this.props.startPageNumber,
   };
 
   handleIncrement = e => {
+    const { startPageNumber } = this.props;
     e.preventDefault();
     this.setState(prevState => ({
-      index: prevState.index + this.props.step,
-      initialValue: prevState.initialValue + this.props.step,
+      index: prevState.index + startPageNumber,
+      currentPageNummber: prevState.currentPageNummber + startPageNumber,
     }));
   };
 
   handleDecrement = e => {
+    const { startPageNumber } = this.props;
     e.preventDefault();
     this.setState(prevState => ({
-      index: prevState.index - this.props.step,
-      initialValue: prevState.initialValue - this.props.step,
+      index: prevState.index - startPageNumber,
+      currentPageNummber: prevState.currentPageNummber - startPageNumber,
     }));
   };
 
   render() {
     const { publications } = this.props;
     const { index } = this.state;
-    const { initialValue } = this.state;
+    const { currentPageNummber } = this.state;
     return (
       <div className="reader">
         <Controls
@@ -49,9 +49,11 @@ export default class Reader extends Component {
           index={index}
           publications={publications}
         />
-        <Counter value={initialValue} publications={publications} />
+        <Counter value={currentPageNummber} publications={publications} />
         <Publication publication={publications[index]} />
       </div>
     );
   }
 }
+
+export default Reader;
