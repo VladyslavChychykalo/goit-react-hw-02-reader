@@ -1,55 +1,31 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Controls from './Controls/Controls';
 import Counter from './Counter/Counter';
 import Publication from './Publication/Publication';
+import publications from '../../info/publication.json';
 
 class Reader extends Component {
-  static defaultProps = {
-    startPageNumber: 1,
-  };
-
-  static propTypes = {
-    publications: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    startPageNumber: PropTypes.number,
-  };
-
   state = {
     index: 0,
-    currentPageNummber: this.props.startPageNumber,
   };
 
-  handleIncrement = e => {
-    const { startPageNumber } = this.props;
-    e.preventDefault();
-    this.setState(prevState => ({
-      index: prevState.index + startPageNumber,
-      currentPageNummber: prevState.currentPageNummber + startPageNumber,
-    }));
-  };
-
-  handleDecrement = e => {
-    const { startPageNumber } = this.props;
-    e.preventDefault();
-    this.setState(prevState => ({
-      index: prevState.index - startPageNumber,
-      currentPageNummber: prevState.currentPageNummber - startPageNumber,
-    }));
+  handleChangeValue = value => {
+    const { index } = this.state;
+    this.setState({
+      index: index + value,
+    });
   };
 
   render() {
-    const { publications } = this.props;
     const { index } = this.state;
-    const { currentPageNummber } = this.state;
     return (
       <div className="reader">
         <Controls
-          onIncrement={this.handleIncrement}
-          onDecrement={this.handleDecrement}
+          onChange={this.handleChangeValue}
           index={index}
           publications={publications}
         />
-        <Counter value={currentPageNummber} publications={publications} />
+        <Counter index={index} publications={publications} />
         <Publication publication={publications[index]} />
       </div>
     );
