@@ -27,6 +27,9 @@
     "jest": true
   },
   "rules": {
+    // "react/prefer-stateless-function": [0, {
+    //   "ignorePureComponents": false
+    // }],
     "no-console": 1,
     "linebreak-style": ["error", "unix"],
     "react/jsx-filename-extension": [1, {

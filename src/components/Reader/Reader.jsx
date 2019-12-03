@@ -11,9 +11,15 @@ class Reader extends Component {
 
   handleChangeValue = value => {
     const { index } = this.state;
-    this.setState({
-      index: index + value,
-    });
+    if (value === 'Deposit') {
+      this.setState({
+        index: index + 1,
+      });
+    } else {
+      this.setState({
+        index: index - 1,
+      });
+    }
   };
 
   render() {

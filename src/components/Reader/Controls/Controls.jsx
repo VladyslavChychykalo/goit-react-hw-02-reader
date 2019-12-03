@@ -15,14 +15,8 @@ class Controls extends Component {
     ).isRequired,
   };
 
-  handleIncrement = () => {
-    const { onChange } = this.props;
-    onChange(1);
-  };
-
-  handleDecrement = () => {
-    const { onChange } = this.props;
-    onChange(-1);
+  handleTakeValue = value => {
+    this.props.onChange(value);
   };
 
   render() {
@@ -30,22 +24,24 @@ class Controls extends Component {
     const { index } = this.props;
     return (
       <section className={styles.controls}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={this.handleDecrement}
-          disabled={index <= 0}
-        >
-          Назад
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={this.handleIncrement}
-          disabled={index >= publications.length - 1}
-        >
-          Вперед
-        </button>
+        <form action="">
+          <button
+            onClick={() => this.handleTakeValue('Withdraw')}
+            type="button"
+            className={styles.button}
+            disabled={index <= 0}
+          >
+            Назад
+          </button>
+          <button
+            onClick={() => this.handleTakeValue('Deposit')}
+            type="button"
+            className={styles.button}
+            disabled={index >= publications.length - 1}
+          >
+            Вперед
+          </button>
+        </form>
       </section>
     );
   }
