@@ -30,7 +30,7 @@ class Controls extends Component {
             onClick={({ target }) => this.handleTakeValue(target)}
             type="button"
             className={styles.button}
-            disabled={index <= 0}
+            disabled={!index}
           >
             Назад
           </button>
