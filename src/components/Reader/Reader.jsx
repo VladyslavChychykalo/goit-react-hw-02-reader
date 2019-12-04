@@ -9,17 +9,11 @@ class Reader extends Component {
     index: 0,
   };
 
-  handleChangeValue = value => {
+  handleChangeValue = target => {
     const { index } = this.state;
-    if (value === 'Deposit') {
-      this.setState({
-        index: index + 1,
-      });
-    } else {
-      this.setState({
-        index: index - 1,
-      });
-    }
+    this.setState({
+      index: target.name === 'Deposit' ? index + 1 : index - 1,
+    });
   };
 
   render() {

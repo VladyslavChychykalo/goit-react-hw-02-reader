@@ -15,8 +15,8 @@ class Controls extends Component {
     ).isRequired,
   };
 
-  handleTakeValue = value => {
-    this.props.onChange(value);
+  handleTakeValue = target => {
+    this.props.onChange(target);
   };
 
   render() {
@@ -26,7 +26,8 @@ class Controls extends Component {
       <section className={styles.controls}>
         <form action="">
           <button
-            onClick={() => this.handleTakeValue('Withdraw')}
+            name="Withdraw"
+            onClick={({ target }) => this.handleTakeValue(target)}
             type="button"
             className={styles.button}
             disabled={index <= 0}
@@ -34,7 +35,8 @@ class Controls extends Component {
             Назад
           </button>
           <button
-            onClick={() => this.handleTakeValue('Deposit')}
+            name="Deposit"
+            onClick={({ target }) => this.handleTakeValue(target)}
             type="button"
             className={styles.button}
             disabled={index >= publications.length - 1}
